@@ -9,7 +9,7 @@ class App extends Component {
 	render() {
 		const { user, page } = this.props
 		const { getImages } = this.props.pageActions
-		return <div className='row'>
+		return <div className='app'>
 			<User name={user.name} surname={user.surname} />
 			<Page category={page.category} images={page.images} getImages={getImages} fetching={page.fetching} error={page.error}/>
 		</div>

@@ -12,7 +12,7 @@ export default class Page extends Component {
 
 	render() {
 		const { category, images, error, fetching} = this.props
-		console.log(this.props)
+
 		const categoryHash = [
 			{
 				value: 'wallpapers',
@@ -40,16 +40,18 @@ export default class Page extends Component {
 			</p>
 			<h3>Категория {category}</h3>
 			{ error ? <p> Алярм! Алярм! { error }</p> : '' }
-			{ images.length ? <p>Получено {images.length} изображений</p> : ''}
 			{
 				fetching ?
 				<p>Загрузка</p>
 				:
-				images.map((image, index) =>
-					<div key={index} className='image'>
-						<img src={image.url} />
-					</div>
-				)
+				<div>
+					{ images.length ? <p>Получено {images.length} изображений</p> : '' }
+					{ images.map((image, index) =>
+						<div key={index} className='image'>
+							<img src={image.url} />
+						</div>
+					)}
+				</div>
 			}
 		</div>
 	}

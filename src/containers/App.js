@@ -1,32 +1,36 @@
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import User from '../components/User'
-import Page from '../components/Page'
-import * as pageActions from '../actions/PageActions'
+import NavLink from '../components/NavLink'
 
 class App extends Component {
 	render() {
-		const { user, page } = this.props
-		const { getImages } = this.props.pageActions
-		return <div className='app'>
-			<User name={user.name} surname={user.surname} />
-			<Page category={page.category} images={page.images} getImages={getImages} fetching={page.fetching} error={page.error}/>
-		</div>
+		const { isAuthenticated } = this.props.user
+		return (
+			<div className='app'>
+				<div className='container'>
+					<ul className='nav nav-pills'>
+						<li><NavLink to='/' onlyActiveOnIndex={true}>Main Page</NavLink></li>
+						<li><NavLink to='/admin'>Admin Panel</NavLink></li>
+						<li><NavLink to='/list'>Categories</NavLink></li>
+						{
+							isAuthenticated ?
+							<li><NavLink to='/signout'>Sign out</NavLink></li>
+							:
+							<li><NavLink to='/signin'>Sign in</NavLink></li>
+						}
+					</ul>
+					{this.props.children}
+				</div>
+			</div>
+		)
 	}
 }
 
 function mapStateToProps(state) {
 	return {
 		user: state.user,
-		page: state.page
+		photos: state.photos
 	}
 }
 
-function mapDispatchToProps(dispatch) {
-	return {
-		pageActions: bindActionCreators(pageActions, dispatch)
-	}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps)(App)

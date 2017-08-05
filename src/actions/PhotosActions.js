@@ -2,7 +2,7 @@ import {
 	GET_IMAGES_REQUEST,
 	GET_IMAGES_SUCCESS,
 	GET_IMAGES_ERROR
-} from '../constants/Page'
+} from '../constants/Photos'
 import axios from 'axios'
 
 export function getImages(category) {
@@ -13,7 +13,7 @@ export function getImages(category) {
 		})
 
 		setTimeout(() => {
-			axios.get(`./jsons/${category}.json`)
+			axios.get(`/jsons/${category}.json`)
 				.then(res => {
 					const images = res.data.images
 					dispatch({

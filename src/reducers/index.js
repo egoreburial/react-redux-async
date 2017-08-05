@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import page from './page'
+import photos from './photos'
 import user from './user'
+import admin from './admin'
 
-export default combineReducers({
-	page,
-	user
+export const  rootReducer = combineReducers({
+	photos,
+	user,
+	admin
 })

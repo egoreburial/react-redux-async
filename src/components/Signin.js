@@ -41,6 +41,22 @@ export class Signin extends Component {
 				<div className='col-md-12'>Logged in as { login }</div>
 				:
 				<div>
+					{
+						fetching ?
+						<div className='alert alert-info'>
+							<strong>Checking...</strong> One moment please...
+						</div>
+						:
+						null
+					}
+					{
+						error ?
+						<div className='alert alert-danger'>
+							<strong>Error!</strong> {error.message}
+						</div>
+						:
+						null
+					}
 					<div className='col-md-12'>Enter login/pass:</div>
 						<form className='col-md-4' onSubmit={::this.handleSubmit}>
 							<div className='form-group'>
@@ -52,8 +68,6 @@ export class Signin extends Component {
 								<input type='text' className='form-control' name='pass' placeholder='Password...'onChange={::this.handleChange}/>
 							</div>
 							<button className='btn btn-primary' type='submit' disabled={!isDisabled}>Sign in</button>
-							{ fetching ? <p> Wait couple seconds... </p> : null }
-							{ error ? <p> {error.message} </p> : null }
 					</form>
 				</div>
 			}

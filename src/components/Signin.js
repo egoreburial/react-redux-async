@@ -15,7 +15,11 @@ export class Signin extends Component {
 	}
 
 	handleChange (event) {
-		this.setState({ [event.target.name]: event.target.value });
+		this.setState({
+			[event.target.name]: event.target.value,
+			fetching: false,
+			error: false
+		});
 	}
 
 	allowSubmit() {
